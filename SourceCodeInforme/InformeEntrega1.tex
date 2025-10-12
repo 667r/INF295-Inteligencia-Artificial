@@ -1,0 +1,149 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx} 
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm]{geometry}
+\usepackage{amssymb}
+\usepackage{hyperref} 
+
+\begin{document}
+\title{Inteligencia Artificial \\ \begin{Large}Estado del Arte: Problema Milk Collection with Blending\end{Large}}
+\author{Mariano Varas Ramos}
+\date{\today}
+\maketitle
+
+
+%--------------------No borrar esta secci'on--------------------------------%
+\section*{Evaluaci\'on}
+
+\begin{tabular}{ll}
+Resumen (5\%): & \underline{\hspace{2cm}} \\
+Introducci\'on (5\%):  & \underline{\hspace{2cm}} \\
+Definici\'on del Problema (10\%):  & \underline{\hspace{2cm}} \\
+Estado del Arte (35\%):  & \underline{\hspace{2cm}} \\
+Modelo Matem\'atico (20\%): &  \underline{\hspace{2cm}}\\
+Conclusiones (20\%): &  \underline{\hspace{2cm}}\\
+Bibliograf\'ia (5\%): & \underline{\hspace{2cm}}\\
+ &  \\
+\textbf{Nota Final (100\%)}:   & \underline{\hspace{2cm}}
+\end{tabular}
+%---------------------------------------------------------------------------%
+\vspace{2cm}
+
+
+\begin{abstract}
+El problema de recolección de leche con mezcla (Milk Collection with Blending Problem, MCPB) es un problema de optimización logística que busca maximizar las ganancias de una empresa lechera. Este desafío consiste en diseñar las rutas óptimas para una flota de vehículos que recolecta leche de distintas calidades desde diversas granjas. Su característica principal es que permite la mezcla de leches de diferentes calidades, lo que puede reducir los ingresos por la degradación del producto, pero a su vez disminuye significativamente los costos de transporte. El presente informe sintetiza el estado del arte de este problema, detallando su definición, variantes, los métodos de solución propuestos y un modelo matemático fundamental.
+\end{abstract}
+
+\section{Introducci\'on}
+El propósito de este documento es realizar un estudio exhaustivo de la literatura existente asociada al Problema de Recolección de Leche con Mezcla, conocido en inglés como Milk Collection with Blending Problem (MCPB). La gestión logística en la industria láctea es un factor crucial para la rentabilidad, donde la recolección de leche de distintas calidades presenta un desafío complejo \cite{Problem2016}. La motivación principal para estudiar el MCPB es su relevancia práctica, ya que la mezcla (o \textit{blending}) es una práctica común que, aunque no había sido formalmente analizada en la literatura hasta hace poco, ofrece un potencial significativo para aumentar las ganancias al optimizar el balance entre costos de transporte e ingresos \cite{Problem2016, IteratedApproach2020}.
+
+Este informe se estructura de la siguiente manera: La Sección 2 define formalmente el problema, sus objetivos, restricciones y variantes. La Sección 3 presenta el estado del arte, describiendo los principales enfoques y algoritmos utilizados para su resolución. La Sección 4 detalla un modelo matemático de programación entera mixta que formaliza el problema. Finalmente, la Sección 5 presenta las conclusiones del estudio y propone posibles líneas de investigación futura.
+
+\section{Definici\'on del Problema}
+El Milk Collection with Blending Problem (MCPB) es una variante del Problema de Ruteo de Vehículos (VRP) en la cual una flota de vehículos debe diseñar rutas para recolectar leche de diferentes calidades desde un conjunto de granjas o centros de acopio y transportarla a una planta de procesamiento \cite{Problem2016}.
+
+El objetivo principal del problema es \textbf{maximizar la ganancia total} de la operación. Esta ganancia se calcula como la diferencia entre los ingresos obtenidos por la leche entregada en la planta y los costos totales de transporte \cite{IteratedApproach2020}.
+
+La característica fundamental que distingue al MCPB de otros problemas de recolección de multi-producto es la posibilidad de \textbf{mezclar leches de distintas calidades} en un mismo tanque o camión. Cuando se realiza una mezcla, la calidad final de todo el producto mezclado corresponde a la de la leche de peor calidad en la mezcla \cite{Problem2016}. Esta degradación reduce el ingreso potencial, pero al mismo tiempo permite una mayor flexibilidad en el diseño de las rutas, lo que puede llevar a una reducción sustancial en los costos de transporte que compensa la pérdida de ingresos \cite{Problem2016, RealisticConstraints2022}.
+
+Las principales \textbf{restricciones} del problema son:
+\begin{itemize}
+    \item La capacidad limitada de cada vehículo de la flota \cite{ComputersInAgriculture2016}.
+    \item El cumplimiento de cuotas mínimas para cada calidad de leche requeridas por la planta de procesamiento \cite{Problem2016}.
+    \item La recolección de la totalidad de la leche producida en cada granja, como suele estipularse en acuerdos con cooperativas \cite{Problem2016}.
+    \item Cada ruta debe comenzar y terminar en la planta de procesamiento (depósito) \cite{RealisticConstraints2022}.
+\end{itemize}
+
+El MCPB es una generalización de problemas clásicos de optimización. Se considera una extensión del \textbf{}Problema de Ruteo de Vehículos Multi-Producto (MPVRP), donde la consolidación de diferentes productos en un mismo vehículo es clave para reducir costos \cite{IteratedApproach2020}. Sin embargo, a diferencia de los enfoques tradicionales de MPVRP para la recolección de leche que utilizan camiones con compartimentos separados para mantener las calidades aisladas \cite{ComputersInAgriculture2016, RealisticConstraints2022}, el MCPB aborda directamente el impacto económico de la mezcla.
+
+\section{Estado del Arte}
+El Milk Collection with Blending Problem (MCPB) fue formalmente introducido y modelado por primera vez por Paredes-Belmar et al. en 2016 \cite{Problem2016}. Aunque la práctica de mezclar productos de distintas calidades era común en la industria, no había sido analizada desde una perspectiva de optimización en la literatura académica. Los trabajos previos sobre recolección de leche multi-calidad se centraban en evitar la mezcla mediante el uso de camiones con múltiples compartimentos \cite{ComputersInAgriculture2016, Caramia2010}. Para resolver el problema base, se han propuesto diferentes enfoques dependiendo del tamaño de la instancia:
+\begin{itemize}
+    \item \textbf{Métodos Exactos:} Para instancias de tamaño pequeño y mediano (hasta aproximadamente 100 nodos), Paredes-Belmar et al. propusieron un modelo de \textbf{Programación Entera Mixta (MIP)} y desarrollaron un algoritmo de \textbf{Branch-and-Cut} que incorpora cortes válidos para fortalecer la formulación y acelerar la búsqueda de la solución óptima \cite{Problem2016}.
+    \item \textbf{Heurísticas y Metaheurísticas:} Dado que el MCPB es un problema NP-hard \cite{Problem2016}, los métodos exactos no son prácticos para instancias de gran tamaño. Para ello, se han desarrollado dos principales enfoques heurísticos:
+    \begin{itemize}
+        \item Una \textbf{heurística de tres etapas} para instancias grandes (como un caso real de 500 granjas), que consiste en: 1) particionar las granjas en clusters, 2) asignar cuotas y camiones a cada cluster, y 3) resolver el problema para cada cluster de forma independiente usando el algoritmo de Branch-and-Cut \cite{Problem2016}.
+        \item Una metaheurística basada en \textbf{Búsqueda Local Iterada (Iterated Local Search - ILS),} propuesta por Villagrán et al. (2020), que ha demostrado ser muy eficaz para encontrar soluciones de alta calidad en tiempos reducidos para instancias a gran escala, superando a otros enfoques heurísticos \cite{IteratedApproach2020}.
+    \end{itemize}
+\end{itemize}
+
+Posteriormente, la literatura ha explorado variantes que añaden mayor realismo y complejidad al problema original:
+
+\begin{itemize}
+    \item \textbf{Milk Collection Problem with Blending and Collection Points (MBCP):} Introducido por Paredes-Belmar et al. en 2017, esta variante incorpora \textbf{puntos de recolección intermedios} \cite{ParedesBelmar2017}. Las granjas pequeñas o remotas pueden entregar su producción en estos puntos, en lugar de recibir la visita directa de un camión, reduciendo así los costos de transporte. Este enfoque transforma el problema en un \textbf{Location-Routing Problem (LRP),} ya que el modelo debe decidir simultáneamente la ubicación de los puntos de recolección, la asignación de granjas a dichos puntos, y las rutas de los camiones que visitan tanto granjas como puntos de recolección \cite{ParedesBelmar2017}. Para su solución, se propuso un Branch-and-Cut para instancias pequeñas y una heurística de tres etapas que utiliza \textbf{Ant Colony System (ACS)} para instancias grandes \cite{ParedesBelmar2017}.
+    \item \textbf{Prize-Collecting Milk Collection Problem (PC-MCP):} Montero et al. (2019) abordaron el problema desde una perspectiva de \textbf{Prize-Collecting Vehicle Routing Problem (PCVRP)} \cite{Montero2019}. En este modelo de negocio, la empresa no está obligada a recolectar toda la leche de todas las granjas (como en un modelo cooperativo), sino que busca recolectar una \textbf{cantidad mínima requerida} para su operación diaria. El objetivo es minimizar los costos totales, que incluyen tanto los costos de transporte como un costo de "sobre-demanda" por recolectar más leche de la necesaria. El problema consiste en seleccionar qué granjas visitar para cumplir con el requerimiento mínimo al menor costo posible. Para resolverlo, se propuso un modelo de programación entera y una metaheurística GRASP (Greedy Randomized Adaptive Search Procedure) para instancias más complejas \cite{Montero2019}.
+\end{itemize}
+
+La tendencia actual para resolver el problema y sus variantes se inclina hacia el uso de \textbf{metaheurísticas robustas} (como ILS, GRASP o ACS), ya que ofrecen el mejor equilibrio entre calidad de la solución y tiempo computacional para aplicaciones en el mundo real.
+
+\section{Modelo Matem\'atico}
+Se presenta a continuación el modelo de programación entera mixta para el Milk Collection with Blending Problem, propuesto por Paredes-Belmar et al. \cite{Problem2016}.
+
+\subsection{Conjuntos y Parámetros}
+\begin{itemize}
+    \item $N$: Conjunto de nodos que representan a los productores (granjas).
+    \item $K$: Conjunto de camiones disponibles.
+    \item $T$: Conjunto de calidades de leche.
+    \item $q_i^t$: Cantidad de leche de calidad $t$ producida en la granja $i$.
+    \item $Q^k$: Capacidad del camión $k$.
+    \item $c_{ij}^k$: Costo de viaje para el camión $k$ desde el nodo $i$ al nodo $j$.
+    \item $\alpha^r$: Ingreso por unidad de leche de calidad $r$.
+    \item $P^r$: Cuota mínima de leche de calidad $r$ requerida en la planta.
+\end{itemize}
+
+\subsection{Variables de Decisi\'on}
+\begin{itemize}
+    \item $x_{ij}^k \in \{0, 1\}$: 1 si el camión $k$ viaja directamente del nodo $i$ al $j$; 0 en caso contrario.
+    \item $y_i^{kt} \in \{0, 1\}$: 1 si el camión $k$ carga leche de calidad $t$ de la granja $i$; 0 en caso contrario.
+    \item $z^{kt} \in \{0, 1\}$: 1 si el camión $k$ entrega leche de calidad $t$ (resultante de la mezcla) en la planta; 0 en caso contrario.
+    \item $w^{kt} \geq 0$: Volumen de leche de calidad $t$ que el camión $k$ entrega en la planta.
+    \item $v^{tr} \geq 0$: Volumen de leche de calidad original $t$ que se entrega en la planta para ser utilizada como leche de calidad $r$.
+\end{itemize}
+
+\subsection{Formulaci\'on}
+\textbf{Funci\'on Objetivo:}
+$$ \text{Maximizar } Z = \sum_{t \in T} \sum_{r \in T} \alpha^r v^{tr} - \sum_{(i,j,k) \in AK} c_{ij}^k x_{ij}^k $$
+La función objetivo maximiza la ganancia total, calculada como el ingreso total por la venta de leche (considerando la calidad final tras la mezcla) menos los costos totales de transporte.
+
+\textbf{Restricciones:}
+\begin{align}
+    & \sum_{t \in T} \sum_{i \in N} q_i^t y_i^{kt} \leq Q^k & \forall k \in K \\
+    & \sum_{k \in K} y_i^{kt} = 1 & \forall i \in N, t \in T \\
+    & \sum_{j \in N_0} x_{0_k j}^k \leq 1 & \forall k \in K \\
+    & \sum_{i \in N_0} x_{ij}^k = \sum_{h \in N_0} x_{jh}^k & \forall j \in N_0, k \in K \\
+    & \sum_{p \in N_0} x_{pi}^k = \sum_{t \in T} y_i^{kt} & \forall i \in N, k \in K \\
+    & \sum_{r \in D^t} z^{kr} \geq y_i^{kt} & \forall i \in N, k \in K, t \in T \\
+    & \sum_{t \in T} z^{kt} \leq 1 & \forall k \in K \\
+    & \sum_{t \in T} v^{tr} \geq P^r & \forall r \in T 
+\end{align}
+Las restricciones principales del modelo son:
+\begin{itemize}
+    \item \textbf{Capacidad:} La cantidad total de leche cargada en un camión no puede exceder su capacidad.
+    \item \textbf{Recolección:} La leche de cada granja debe ser recolectada por exactamente un camión.
+    \item \textbf{Rutas:} Definen la estructura de las rutas, asegurando que cada camión tenga a lo sumo una ruta, que el flujo se conserve en cada nodo y que un camión visite una granja si recolecta leche de ella.
+    \item \textbf{Mezcla en Camión:} Controlan la calidad de la mezcla. La restricción (6) asegura que si un camión transporta leche de calidad $t$, no puede haber recogido leche de una calidad inferior. La (7) establece que cada camión solo puede entregar una calidad final de leche.
+    \item \textbf{Cuotas en Planta:} Garantizan que se cumplan las demandas mínimas de cada calidad de leche en la planta.
+    \item Adicionalmente, se incluyen restricciones para eliminar subtours, entre otras, para completar el modelo.
+\end{itemize}
+
+\section{Conclusiones}
+Del estudio realizado sobre el Milk Collection with Blending Problem, se extraen las siguientes conclusiones relevantes:
+\begin{itemize}
+    \item \textbf{Impacto de la Mezcla:} La principal conclusión es que la estrategia de mezcla (blending) es económicamente ventajosa. Aunque reduce los ingresos al degradar la calidad, los ahorros en costos de transporte son generalmente mayores, resultando en una ganancia neta superior en comparación con la recolección por separado \cite{Problem2016}.
+    
+    \item \textbf{Técnicas de Solución y Variantes:} Existe una clara división en las técnicas de solución según la escala del problema. Para instancias medianas, los métodos exactos como Branch-and-Cut son viables. Para problemas de tamaño real, las metaheurísticas (ILS, ACS, GRASP) son las más prometedoras \cite{IteratedApproach2020, ParedesBelmar2017, Montero2019}. Las técnicas difieren en el contexto del problema: el ILS se enfoca en optimizar rutas para el problema base, el ACS en generar rutas en un entorno con puntos de recolección, y el GRASP en seleccionar qué granjas visitar.
+    
+    \item \textbf{Limitaciones:} La principal limitación de los enfoques actuales es la complejidad computacional inherente al ser un problema NP-hard. Las heurísticas, aunque eficientes, no garantizan encontrar la solución óptima. Además, la aplicabilidad de cada variante (con o sin puntos de recolección, recolección total o parcial) depende del modelo de negocio y las regulaciones de la empresa \cite{Problem2016, Montero2019}.
+    
+    \item \textbf{Propuestas para Trabajo Futuro:} La investigación en el MCPB puede extenderse en varias direcciones. Una línea prometedora es la hibridación de metaheurísticas para mejorar la calidad de las soluciones. Otra área de interés es la incorporación de más restricciones del mundo real, como ventanas de tiempo, múltiples depósitos o la naturaleza estocástica de la producción de leche \cite{RealisticConstraints2022}. También, como sugiere Villagrán et al. (2020), se podrían explorar reglas de mezcla más complejas, basadas en la concentración de componentes en lugar de simplemente tomar la peor calidad \cite{IteratedApproach2020}.
+\end{itemize}
+
+%--------------------BIBLIOGRAFÍA-------------------------%
+\bibliographystyle{unsrt} 
+\bibliography{Referencias} 
+
+\end{document}
