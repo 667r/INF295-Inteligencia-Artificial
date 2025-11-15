@@ -1,0 +1,15 @@
+Instancia instancias/a38.txt leída correctamente.
+Nodos: 38, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 1802588328925381912
+30440 936 29504
+0-14-11-20-35-2-5-17-26-29-32-38-23-8-0 302 14300A
+0-10-22-34-24-4-13-31-7-19-28-33-16-37-18-3-25-0 380 18800C
+0-15-21-6-12-30-27-36-9-0 254 15000B
+Factible: No

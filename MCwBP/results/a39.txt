@@ -1,0 +1,15 @@
+Instancia instancias/a39.txt leída correctamente.
+Nodos: 39, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 6718483056976729111
+31690 888 30802
+0-5-14-29-35-38-23-8-17-11-2-32-26-20-0 348 14600A
+0-34-13-19-10-16-4-25-28-37-7-31-22-0 300 16600C
+0-39-24-21-30-6-33-3-36-27-18-12-9-15-0 240 17300B
+Factible: Si

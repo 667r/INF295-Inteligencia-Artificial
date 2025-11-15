@@ -1,0 +1,15 @@
+Instancia instancias/a44.txt leída correctamente.
+Nodos: 44, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -6135173448498246118
+39020 1098 37922
+0-42-39-10-37-7-4-13-40-31-19-12-43-22-34-25-28-16-0 349 17200C
+0-3-15-23-30-36-2-21-24-18-27-33-6-20-8-9-0 403 19800B
+0-32-29-5-35-11-38-17-41-44-14-26-0 346 20000A
+Factible: No

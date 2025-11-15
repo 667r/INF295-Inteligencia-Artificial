@@ -1,0 +1,15 @@
+Instancia instancias/c75.txt leída correctamente.
+Nodos: 76, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 7653743377070499559
+32460 781 31679
+0-69-7-34-74-64-13-73-40-10-56-32-66-67-36-8-0 189 11900C
+0-76-52-17-4-45-19-25-50-24-44-43-23-62-22-37-70-72-61-71-21-38-30-49-75-3-31-46-28-16-58-14-55-20-9-53-0 304 26300C
+0-5-6-48-29-63-65-42-57-2-18-41-26-51-33-59-11-39-12-60-15-54-47-35-68-27-0 288 30000B
+Factible: No

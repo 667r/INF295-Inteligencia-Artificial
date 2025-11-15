@@ -1,0 +1,15 @@
+Instancia instancias/f45.txt leída correctamente.
+Nodos: 45, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -8368919808400302883
+24870 1167 23703
+0-21-27-24-9-45-42-33-30-6-36-39-15-14-12-18-3-0 406 18020B
+0-22-19-13-4-7-28-34-31-40-43-37-10-16-25-0 291 8320C
+0-17-11-26-23-20-44-29-32-8-5-35-41-38-2-0 469 9760A
+Factible: Si

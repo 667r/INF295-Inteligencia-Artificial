@@ -1,0 +1,15 @@
+Instancia instancias/a37.txt leída correctamente.
+Nodos: 37, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 5509799489545406875
+25210 922 24288
+0-22-34-6-7-13-15-24-10-28-25-4-31-19-37-16-0 344 15700C
+0-5-14-11-3-18-21-12-9-36-27-33-30-0 331 15000B
+0-17-8-23-2-20-26-32-29-35-0 247 10000A
+Factible: Si

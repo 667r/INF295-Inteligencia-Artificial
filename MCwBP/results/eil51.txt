@@ -1,0 +1,15 @@
+Instancia instancias/eil51.txt leída correctamente.
+Nodos: 51, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 4475888030003976438
+48990 704 48286
+0-48-45-42-15-24-27-9-36-21-30-3-12-39-0 201 25000B
+0-47-17-35-11-50-38-5-20-41-14-26-44-8-32-29-23-2-0 241 22400A
+0-13-6-33-4-37-22-51-10-31-40-34-46-16-43-18-19-25-7-49-28-0 262 30300C
+Factible: Si

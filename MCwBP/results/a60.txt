@@ -1,0 +1,15 @@
+Instancia instancias/a60.txt leída correctamente.
+Nodos: 60, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 3602103499262861220
+25600 1168 24432
+0-19-34-58-38-28-16-40-13-52-10-43-46-6-55-49-37-31-25-59-7-22-4-0 428 16000C
+0-53-20-8-14-44-23-2-50-29-35-5-41-47-26-17-0 327 9950A
+0-21-12-32-54-45-3-11-33-57-51-56-27-18-9-30-39-60-36-24-48-15-42-0 413 15500B
+Factible: Si

@@ -1,0 +1,15 @@
+Instancia instancias/tai75B.txt leída correctamente.
+Nodos: 76, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -3894853761478178776
+34355 1240 33115
+0-4-42-46-35-25-29-18-36-32-19-28-22-34-33-31-48-39-53-47-15-37-60-64-63-61-58-59-57-56-70-13-0 479 17965C
+0-5-3-10-16-73-76-75-12-71-49-51-54-65-68-67-66-50-55-38-43-52-40-14-8-7-0 319 26575C
+0-72-41-27-24-20-17-26-30-21-23-45-44-62-74-69-2-9-11-6-0 442 29990B
+Factible: No

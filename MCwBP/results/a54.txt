@@ -1,0 +1,15 @@
+Instancia instancias/a54.txt leída correctamente.
+Nodos: 54, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 5959348709342175740
+19735 950 18785
+0-19-40-16-37-46-22-34-10-4-49-13-28-25-52-43-7-31-0 397 9200C
+0-17-33-15-3-38-41-9-20-32-23-54-45-39-12-14-36-44-0 264 13050B
+0-5-29-6-8-51-50-21-24-30-2-27-18-11-47-42-48-26-35-53-0 290 11200B
+Factible: No

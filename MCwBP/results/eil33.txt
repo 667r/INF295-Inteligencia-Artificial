@@ -1,0 +1,15 @@
+Instancia instancias/eil33.txt leída correctamente.
+Nodos: 33, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 8692840764606832657
+21327 919 20408
+0-3-12-6-33-9-21-24-18-15-27-30-0 310 11690B
+0-31-16-28-25-22-19-10-7-13-4-0 277 6480C
+0-5-8-11-20-23-26-17-29-14-2-32-0 332 11200A
+Factible: Si

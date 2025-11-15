@@ -1,0 +1,15 @@
+Instancia instancias/f71.txt leída correctamente.
+Nodos: 72, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -28519521962876051
+54452 376 54076
+0-37-36-2-72-7-6-4-8-10-0 68 15007C
+0-26-29-44-54-45-48-51-71-69-59-57-60-62-33-35-20-12-11-9-5-0 125 50000B
+0-32-61-66-65-63-15-16-13-18-3-17-14-19-34-58-55-56-50-49-47-43-46-53-52-40-38-41-39-70-67-68-64-42-25-27-24-22-28-23-30-31-21-0 183 49833C
+Factible: No

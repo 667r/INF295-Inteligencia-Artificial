@@ -1,0 +1,15 @@
+Instancia instancias/eil30.txt leída correctamente.
+Nodos: 30, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: 2325309264886089651
+7505 772 6733
+0-21-6-3-9-12-0 217 5000B
+0-11-8-14-17-29-26-2-5-23-20-0 275 2400A
+0-19-24-16-13-18-10-15-22-4-7-25-30-28-27-0 279 5350C
+Factible: Si

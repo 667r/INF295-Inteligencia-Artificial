@@ -1,0 +1,15 @@
+Instancia instancias/eil22.txt leída correctamente.
+Nodos: 22, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -6980794056605285653
+16490 543 15947
+0-22-19-16-13-10-7-4-0 188 5500C
+0-12-9-3-6-21-18-15-0 178 7200B
+0-11-8-2-5-14-20-17-0 177 9800A
+Factible: Si

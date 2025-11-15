@@ -1,0 +1,15 @@
+Instancia instancias/a62.txt leída correctamente.
+Nodos: 62, Camiones: 3
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -7965175486140251552
+16995 1039 15956
+0-37-17-38-23-45-14-57-58-33-7-62-52-0 245 7750C
+0-19-31-46-47-10-55-43-4-25-40-28-24-42-22-5-36-34-18-32-61-6-15-13-49-16-0 374 13900C
+0-53-54-20-39-3-48-2-26-12-50-59-51-27-56-60-35-41-30-44-9-11-21-8-29-0 419 15000B
+Factible: No

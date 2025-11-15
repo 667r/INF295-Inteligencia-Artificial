@@ -1,0 +1,13 @@
+Instancia instancias/debug.txt leída correctamente.
+Nodos: 3, Camiones: 1
+
+--- Ejecutando Simulated Annealing ---
+Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+Iniciando Simulated Annealing...
+Simulated Annealing terminado.
+
+--- Mejor Solución Encontrada (SA) ---
+Seed: -5718250547846739297
+90 34 56
+0-3-2-0 34 90A
+Factible: Si
