@@ -18,6 +18,8 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
     
     // copiar granjas para marcarlas como no visitadas
     vector<Nodo> granjasNoVisitadas = inst.granjas;
+
+    vector<int> granjasNoVisitadasIDs;
     
     // mezclar aleatoriamente las granjas para introducir variabilidad
     shuffle(granjasNoVisitadas.begin(), granjasNoVisitadas.end(), default_random_engine(seed));
@@ -55,10 +57,13 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
         if (mejorCamion != -1) {
             rutas[mejorCamion].insert(rutas[mejorCamion].begin() + mejorPosicion, granja.id);
             cargasActuales[mejorCamion] += granja.cantidadLeche;
-        } 
+        } else {
+            // si no se pudo insertar, marcar como no visitada
+            granjasNoVisitadasIDs.push_back(granja.id);
+        }        
     }
 
-    return Solucion(rutas, inst);
+    return Solucion(rutas, granjasNoVisitadasIDs, inst);
 }
 
 
@@ -100,43 +105,116 @@ Solucion Algoritmo::ejecutarSimulatedAnnealing(double tempInicial, double tempFi
     return mejorSolucion;
 }
 
-// devuelve una nueva solución aplicando un movimiento 2-Opt 
+// devuelve una nueva solución aplicando un movimiento aleatorio
 Solucion Algoritmo::generarVecino(const Solucion& solActual) {
     vector<vector<int>> nuevasRutas = solActual.rutas;
-
-    // si no hay rutas, no se puede hacer nada
-    if (nuevasRutas.empty()) {
-        return Solucion(nuevasRutas, inst);
-    }
-
-    // 2opt
-
-    // 1. elegir una ruta al azar (k) que tenga al menos 2 granjas.
-    int k = rand() % nuevasRutas.size();
-    int intentos = 0;
-    while (nuevasRutas[k].size() < 2 && intentos < nuevasRutas.size()) {
-        k = (k + 1) % nuevasRutas.size(); // Probar la siguiente ruta
-        intentos++;
-    }
-
-    // si no se encontró ninguna ruta válida, devolver la copia sin cambios.
-    if (nuevasRutas[k].size() < 2) {
-        return Solucion(nuevasRutas, inst);
-    }
-
-    // 2. elegir dos índices aleatorios (i, j) en la ruta k, asegurando que i < j.
-    int rutaSize = nuevasRutas[k].size();
+    vector<int> nuevasNoVisitadas = solActual.granjasNoVisitadas;
     
-    int i = rand() % (rutaSize - 1); // indice 1: de 0 a (tamaño - 2)
-    int j = (rand() % (rutaSize - 1 - i)) + i + 1; // indice 2: de (i + 1) a (tamaño - 1)
 
-    // 3. invertir el segmento de la ruta entre i y j (inclusive).
-    // reverse(inicio, fin) -> 'fin' es exclusivo.
-    // queremos invertir desde el iterador de 'i' hasta el iterador *después* de 'j'.
-    reverse(nuevasRutas[k].begin() + i, nuevasRutas[k].begin() + j + 1);
+    if (nuevasRutas.empty()) {
+        return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+    }
 
-    // 4. devolver la nueva solución vecina
-    return Solucion(nuevasRutas, inst);
+    // elegir un tipo de movimiento aleatorio
+    int tipoMovimiento = rand() % 5; // 0, 1, 2, 3, 4
+
+    if (tipoMovimiento == 3 && nuevasNoVisitadas.empty()) {
+        tipoMovimiento = 0; // si no hay granjas para añadir, reinserta
+    }
+    if (tipoMovimiento == 4) {
+        bool hayGranjasParaRemover = false;
+        for(const auto& r : nuevasRutas) {
+            if (!r.empty()) {
+                hayGranjasParaRemover = true;
+                break;
+            }
+        }
+        if (!hayGranjasParaRemover) {
+            tipoMovimiento = 0; // si no hay granjas para remover, reinserta
+        }
+    }
+
+    if (tipoMovimiento == 0) {
+        // reinsertar granja entre rutas
+        int k_origen = rand() % nuevasRutas.size();
+        size_t intentos = 0;
+        while (nuevasRutas[k_origen].empty() && intentos < nuevasRutas.size()) {
+            k_origen = (k_origen + 1) % nuevasRutas.size();
+            intentos++;
+        }
+        if (nuevasRutas[k_origen].empty()) return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+
+        int pos_origen = rand() % nuevasRutas[k_origen].size();
+        int granjaId = nuevasRutas[k_origen][pos_origen];
+        nuevasRutas[k_origen].erase(nuevasRutas[k_origen].begin() + pos_origen);
+        int k_destino = rand() % nuevasRutas.size();
+        int pos_destino = nuevasRutas[k_destino].empty() ? 0 : rand() % (nuevasRutas[k_destino].size() + 1);
+        nuevasRutas[k_destino].insert(nuevasRutas[k_destino].begin() + pos_destino, granjaId);
+
+    } else if (tipoMovimiento == 1) {
+        // swap, intercambia granjar
+        int k1 = rand() % nuevasRutas.size();
+        size_t intentos = 0;
+        while (nuevasRutas[k1].empty() && intentos < nuevasRutas.size()) {
+            k1 = (k1 + 1) % nuevasRutas.size();
+            intentos++;
+        }
+        if (nuevasRutas[k1].empty()) return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+        int pos1 = rand() % nuevasRutas[k1].size();
+        
+        int k2 = rand() % nuevasRutas.size();
+        intentos = 0;
+        while (nuevasRutas[k2].empty() && intentos < nuevasRutas.size()) {
+            k2 = (k2 + 1) % nuevasRutas.size();
+            intentos++;
+        }
+        if (nuevasRutas[k2].empty()) return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+        int pos2 = rand() % nuevasRutas[k2].size();
+
+        swap(nuevasRutas[k1][pos1], nuevasRutas[k2][pos2]);
+        
+    } else if (tipoMovimiento == 2) {
+        // 2 opt (invesrión de segmento de ruta)
+        int k = rand() % nuevasRutas.size();
+        size_t intentos = 0;
+        while (nuevasRutas[k].size() < 2 && intentos < nuevasRutas.size()) {
+            k = (k + 1) % nuevasRutas.size();
+            intentos++;
+        }
+        if (nuevasRutas[k].size() < 2) return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+
+        int rutaSize = nuevasRutas[k].size();
+        int i = rand() % (rutaSize - 1);
+        int j = (rand() % (rutaSize - 1 - i)) + i + 1;
+        std::reverse(nuevasRutas[k].begin() + i, nuevasRutas[k].begin() + j + 1);
+
+    } else if (tipoMovimiento == 3) {
+        // añadir granja no visitada
+        int idx = rand() % nuevasNoVisitadas.size();
+        int granjaId = nuevasNoVisitadas[idx];
+        nuevasNoVisitadas.erase(nuevasNoVisitadas.begin() + idx);
+        int k_destino = rand() % nuevasRutas.size();
+        int pos_destino = nuevasRutas[k_destino].empty() ? 0 : rand() % (nuevasRutas[k_destino].size() + 1);
+        nuevasRutas[k_destino].insert(nuevasRutas[k_destino].begin() + pos_destino, granjaId);
+
+    } else { 
+        // quitar una granja de la ruta y ponerla en no visitadas
+        int k_origen = rand() % nuevasRutas.size();
+        size_t intentos = 0;
+        while (nuevasRutas[k_origen].empty() && intentos < nuevasRutas.size()) {
+            k_origen = (k_origen + 1) % nuevasRutas.size();
+            intentos++;
+        }
+        if (nuevasRutas[k_origen].empty()) return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
+
+        int pos_origen = rand() % nuevasRutas[k_origen].size();
+        int granjaId = nuevasRutas[k_origen][pos_origen];
+        nuevasRutas[k_origen].erase(nuevasRutas[k_origen].begin() + pos_origen);
+        nuevasNoVisitadas.push_back(granjaId);
+    }
+
+    // devuelve la nueva solución creada
+    return Solucion(nuevasRutas, nuevasNoVisitadas, inst);
 }
 
 // criterio de aceptación para SA
@@ -150,7 +228,7 @@ bool Algoritmo::aceptarSolucion(double nuevoProfit, double profitActual, double 
     return (double)rand() / RAND_MAX < prob;
 }
 
-// función de "Energía" para SA, queremos maximizar el profit.
+// función de "energía" para SA, se quiere maximizar el profit.
 // incluye penalizaciones por infactibilidad.
 double Algoritmo::calcularEnergia(const Solucion& sol) {
     double profit = sol.profit;
@@ -163,12 +241,12 @@ double Algoritmo::calcularEnergia(const Solucion& sol) {
             carga += inst.getNodo(granjaId).cantidadLeche;
         }
         if (carga > inst.capacidadesCamiones[k]) {
-            penalizacion += (carga - inst.capacidadesCamiones[k]) * 100.0; // Penalización alta
+            penalizacion += (carga - inst.capacidadesCamiones[k]) * 15.0; // Penalización alta
         }
     }
 
     // 2. penalización por cuotas
-    // (Re-evaluar la leche final, ya que 'sol.esFactible' es solo un booleano)
+    // (re-evaluar la leche final, ya que 'sol.esFactible' es solo un booleano)
     vector<int> lecheFinalPorTipo(inst.numTiposLeche, 0);
     for (const auto& ruta : sol.rutas) {
         if(ruta.empty()) continue;
@@ -184,8 +262,13 @@ double Algoritmo::calcularEnergia(const Solucion& sol) {
 
     for (int i = 0; i < inst.numTiposLeche; ++i) {
         if (lecheFinalPorTipo[i] < inst.cuotasLeche[i]) {
-            penalizacion += (inst.cuotasLeche[i] - lecheFinalPorTipo[i]) * 10.0; // penalización media
+            penalizacion += (inst.cuotasLeche[i] - lecheFinalPorTipo[i]) * 100.0; // penalización media
         }
+    }
+
+    for (int granjaId : sol.granjasNoVisitadas) {
+        // penalización muy alta, proporcional a la cantidad de leche no recogida
+        penalizacion += inst.getNodo(granjaId).cantidadLeche * 50.0; 
     }
     
     return profit - penalizacion;

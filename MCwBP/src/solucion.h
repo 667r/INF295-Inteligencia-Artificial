@@ -10,6 +10,8 @@ public:
     // una solución es un vector de rutas y cada ruta es un vector de IDs de granjas.
     vector<vector<int>> rutas;
 
+    vector<int> granjasNoVisitadas;
+
     // metricas
     double gananciaTotal;
     double costoTransporte;
@@ -18,7 +20,7 @@ public:
 
 public:
     // constructor para una solución 
-    Solucion(const vector<vector<int>>& rutas, const Instancia& inst);
+    Solucion(const vector<vector<int>>& rutas, const vector<int>& noVisitadas, const Instancia& inst);
 
     // f.e.
     void evaluar(const Instancia& inst);

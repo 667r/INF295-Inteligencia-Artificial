@@ -28,13 +28,22 @@ int main(int argc, char* argv[]) {
         // inicializar el algoritmo
         Algoritmo algo(instancia, seed);
 
-        // 2. generar solución inicial greedy 
-        cout << "\n--- Generando Solución Inicial (Greedy) ---" << endl;
-        Solucion solInicial = algo.generarSolucionInicialGreedy();
+        // 1. definir los parámetros de SA (puedes ajustarlos)
+        double tempInicial = 100000.0;
+        double tempFinal = 1.0;
+        double tasaEnfriamiento = 0.9999;
+
+        cout << "\n--- Ejecutando Simulated Annealing ---" << endl;
+        cout << "Temp. Inicial: " << tempInicial << ", Temp. Final: " << tempFinal << ", Tasa: " << tasaEnfriamiento << endl;
+
+        // 2. ejecutar el algoritmo
+        Solucion solFinal = algo.ejecutarSimulatedAnnealing(tempInicial, tempFinal, tasaEnfriamiento);
         
-        // 3. evaluar y mostrar solución inicial 
-        solInicial.imprimirFormatoSalida(seed, instancia);
-        cout << "Factible: " << (solInicial.esFactible ? "Si" : "No") << endl;
+        // 3. evaluar y mostrar la mejor solución encontrada
+        cout << "\n--- Mejor Solución Encontrada (SA) ---" << endl;
+        solFinal.imprimirFormatoSalida(seed, instancia);
+        cout << "Factible: " << (solFinal.esFactible ? "Si" : "No") << endl;
+
 
 
     } catch (const exception& e) {

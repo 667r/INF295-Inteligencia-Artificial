@@ -2,7 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
-Solucion::Solucion(const vector<vector<int>>& r, const Instancia& inst) : rutas(r) {
+Solucion::Solucion(const vector<vector<int>>& r, const vector<int>& noVisitadas, const Instancia& inst) 
+    : rutas(r), granjasNoVisitadas(noVisitadas) {
     evaluar(inst); // evaluar la solución tan pronto como se crea
 }
 
@@ -60,29 +61,25 @@ void Solucion::evaluar(const Instancia& inst) {
             esFactible = false;
         }
     }
+    
+    if (!granjasNoVisitadas.empty()) {
+        esFactible = false;
+    }
 
     // calcular ganancia neta
-    if (!esFactible) {
-        profit = -1e9; // penalización grande para soluciones no factibles
-    } else {
-        profit = gananciaTotal - costoTransporte;
-    }
+    profit = gananciaTotal - costoTransporte;
+
 }
 
 void Solucion::imprimirFormatoSalida(long seed, const Instancia& inst) const {
-    // formato de salida
     cout << "Seed: " << seed << endl;
     
-    // imprimir Ganancia final | costo total | ganancia total
     cout << fixed << setprecision(0) << gananciaTotal << " "
          << costoTransporte << " " << profit << endl;
 
-    // imprimir rutas
-    for (const auto& ruta : rutas) {
-        if (ruta.empty()) {
-            cout << "0-0 0 0X" << endl; // ruta vacía
-            continue;
-        }
+    for (size_t k = 0; k < rutas.size(); ++k) {
+        const auto& ruta = rutas[k];
+        if (ruta.empty()) continue;
 
         double costoRuta = 0;
         int lecheTotal = 0;
@@ -92,18 +89,18 @@ void Solucion::imprimirFormatoSalida(long seed, const Instancia& inst) const {
         string rutaStr = "0";
         for (int granjaId : ruta) {
             rutaStr += "-" + to_string(granjaId);
-            const Nodo& granja = inst.getNodo(granjaId);
+            const Nodo& granja = inst.getNodo(granjaId); // usa la instancia pasada
             
-            costoRuta += inst.getDistancia(nodoActual, granjaId);
+            costoRuta += inst.getDistancia(nodoActual, granjaId); // usa la instancia pasada
             nodoActual = granjaId;
             lecheTotal += granja.cantidadLeche;
             if (granja.tipoLeche > calidadFinal) {
                 calidadFinal = granja.tipoLeche;
             }
         }
-        costoRuta += inst.getDistancia(nodoActual, 1);
+        costoRuta += inst.getDistancia(nodoActual, 1); // usa la instancia pasada
         rutaStr += "-0";
 
-        cout << rutaStr << " " << (int)costoRuta << " " << lecheTotal << calidadFinal << endl;
+        cout << rutaStr << " " << (int)round(costoRuta) << " " << lecheTotal << calidadFinal << endl;
     }
 }
