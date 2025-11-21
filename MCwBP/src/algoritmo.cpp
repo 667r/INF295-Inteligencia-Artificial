@@ -241,7 +241,7 @@ double Algoritmo::calcularEnergia(const Solucion& sol) {
             carga += inst.getNodo(granjaId).cantidadLeche;
         }
         if (carga > inst.capacidadesCamiones[k]) {
-            penalizacion += (carga - inst.capacidadesCamiones[k]) * 15.0; // Penalización alta
+            penalizacion += (carga - inst.capacidadesCamiones[k]) * 15.0; // penalización alta
         }
     }
 

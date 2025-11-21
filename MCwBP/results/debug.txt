@@ -7,7 +7,7 @@ Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
 --- Mejor Solución Encontrada (SA) ---
-Seed: -5718250547846739297
+Seed: -5718250547846413659
 90 34 56
-0-3-2-0 34 90A
+0-2-3-0 34 90A
 Factible: Si
