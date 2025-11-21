@@ -38,10 +38,6 @@ const string instanciaDir = "instancias/";
         const string pathInstancia = entry.path().string();
         const string filename = entry.path().filename().string();
 
-        // saltar archivos que no sean .txt
-        if (entry.path().extension() != ".txt") {
-            continue;
-        }
 
         // mostrar progreso en la consola
         cout << "Procesando: " << filename << "..." << flush;
@@ -71,6 +67,15 @@ const string instanciaDir = "instancias/";
             cout << "Temp. Inicial: " << tempInicial << ", Temp. Final: " << tempFinal << ", Tasa: " << tasaEnfriamiento << endl;
 
             Solucion solFinal = algo.ejecutarSimulatedAnnealing(tempInicial, tempFinal, tasaEnfriamiento);
+
+            // Guardar datos para gráfico
+            string pathCSV = resultsDir + filename + ".csv";
+            ofstream csvFile(pathCSV);
+            csvFile << "Iteracion,Profit\n";
+            for (const auto& p : algo.historialConvergencia) {
+                csvFile << p.first << "," << p.second << "\n";
+            }
+            csvFile.close();
             
             cout << "\n--- Mejor Solución Encontrada (SA) ---" << endl;
             solFinal.imprimirFormatoSalida(seed, instancia);

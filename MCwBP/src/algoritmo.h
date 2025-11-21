@@ -10,6 +10,8 @@ private:
 public:
     Algoritmo(const Instancia& inst, long seed);
 
+    vector<pair<int, double>> historialConvergencia; // <Iteración, Costo/Profit>
+
     // solución inicial con greedy
     Solucion generarSolucionInicialGreedy();
 
