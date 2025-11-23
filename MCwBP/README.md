@@ -104,6 +104,7 @@ Para modificar o agregar nuevas instancias de prueba, simplemente añada los arc
 │   ├── solucion.h/cpp  # representación y evaluación
 │   ├── graficador.h    # generador de SVG 
 │   ├── analisis.cpp    # script de estadísticas
+│   └── plotter.py      # script generador de gráficos para el informe
 │   └── main.cpp        # punto de entrada
 └── Makefile            # script de compilación
 ```
