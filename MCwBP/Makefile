@@ -20,23 +20,23 @@ SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 # genera los nombres de los archivos objeto en el directorio obj
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-# Objetivo principal (compila todo)
+# objetivo principal (compila todo)
 all: $(TARGET) $(BINDIR)/analisis
 
-# Regla para el programa principal (mcwb)
+# regla para el programa principal (mcwb)
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
 	# Excluimos analisis.o del linkeo de mcwb para evitar conflicto de main()
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(filter-out $(OBJDIR)/analisis.o, $(OBJECTS)) $(LDFLAGS)
 	@echo "Compilación MCWB completada."
 
-# Regla específica para el programa de análisis
+# regla específica para el programa de análisis
 $(BINDIR)/analisis: $(OBJDIR)/analisis.o
 	@mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) -o $(BINDIR)/analisis $(OBJDIR)/analisis.o $(LDFLAGS)
 	@echo "Compilación completada."
 
-# Regla genérica para compilar .cpp a .o
+# regla genérica para compilar .cpp a .o
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

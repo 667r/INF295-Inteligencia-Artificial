@@ -17,14 +17,14 @@ struct Resultado {
     bool factibleIni = false;
     long profitFin = 0;
     bool factibleFin = false;
-    double tiempo = 0.0; // NUEVO: Tiempo
+    double tiempo = 0.0;
     
     bool leidoInstancia = false;
     bool leidoProfitIni = false;
     bool leidoFactibleIni = false;
     bool leidoProfitFin = false;
     bool leidoFactibleFin = false;
-    bool leidoTiempo = false; // NUEVO: Flag de tiempo
+    bool leidoTiempo = false;
 
     bool estaCompleto() const {
         return leidoInstancia && leidoProfitIni && leidoFactibleIni && 
@@ -87,7 +87,7 @@ int main() {
     const string graficosDir = "graficos/";
     vector<Resultado> resultados;
     
-    // Regex para capturar el tiempo (ej. "Tiempo: 12.45s")
+    // regex para capturarel tiempo
     regex regex_tiempo("Tiempo:\\s*([0-9\\.]+)\\s*s");
 
     if (!fs::exists(resultsDir)) {
@@ -108,7 +108,7 @@ int main() {
         Resultado res;
         int mode = 0; 
 
-        // Leemos todo el contenido para aplicar regex de tiempo
+        // se lee todo el contenido para buscar el tiempo con regex
         string full_content = leerArchivo(entry.path().string());
         smatch m_time;
         if (regex_search(full_content, m_time, regex_tiempo)) {
@@ -116,7 +116,7 @@ int main() {
             res.leidoTiempo = true;
         }
 
-        // Volver al inicio del archivo para leer línea por línea los datos estructurados
+        // vuelve al inicio del archivo para parsear línea por línea
         file.clear();
         file.seekg(0, ios::beg);
 
@@ -196,7 +196,7 @@ int main() {
     cout << "\n--- TABLA LATEX ---\n" << endl;
     cout << "\\begin{table}[H]" << endl;
     cout << "\\centering" << endl;
-    cout << "\\begin{tabular}{|l|c|c|c|c|c|}" << endl; // Columna extra para tiempo
+    cout << "\\begin{tabular}{|l|c|c|c|c|c|}" << endl;
     cout << "\\hline" << endl;
     cout << "\\textbf{Instancia} & \\textbf{Profit Ini.} & \\textbf{Fact. Ini.} & \\textbf{Profit Fin.} & \\textbf{Fact. Fin.} & \\textbf{Tiempo (s)} \\\\ \\hline" << endl;
 
@@ -220,7 +220,7 @@ int main() {
              << fixed << setprecision(2) << r.tiempo << " \\\\" << endl;
     }
     
-    // Fila de TOTALES
+    // totales
     cout << "\\hline" << endl;
     cout << "\\textbf{Total} & - & - & - & - & \\textbf{" << fixed << setprecision(2) << tiempoTotalAcumulado << "} \\\\" << endl;
 

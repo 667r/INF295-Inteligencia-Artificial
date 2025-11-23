@@ -119,4 +119,7 @@ Se utilizó el LLM Google Gemini para la realizar los siguientes archivos:
 * 'Makefile'
 * 'graficador .h'
 * Estructuras de guardado de resultados en 'main.cpp'
+* analisis.cpp
+
+La completitud del código relacionado a la implementación de estructuras de datos/algoritmos/main simple fue desarrollado y comentado por mi.
 

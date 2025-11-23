@@ -6,7 +6,7 @@
 #include <fstream>    
 #include <streambuf>  
 #include <functional> 
-#include <chrono> // NUEVO: Para medir tiempo
+#include <chrono>
 
 #include "instancia.h" 
 #include "algoritmo.h" 
@@ -15,7 +15,7 @@
 
 namespace fs = std::filesystem; 
 using namespace std;
-using namespace std::chrono; // Para simplificar chrono
+using namespace std::chrono;
 
 int main() {
     const string instanciaDir = "instancias/";
@@ -42,7 +42,7 @@ int main() {
 
         cout << "Procesando: " << filename << "..." << flush;
 
-        // Variables para medir tiempo total del proceso (Greedy + SA)
+        // variables para medir tiempo total del proceso (Greedy + SA)
         auto inicio_total = high_resolution_clock::now();
 
         try {
@@ -59,29 +59,28 @@ int main() {
 
             Algoritmo algo(instancia, seed);
             
-            // 1. Generar y Evaluar Solución Inicial
+            // 1. generar y evaluar solución inicial
             Solucion solInicial = algo.generarSolucionInicialGreedy();
             cout << "\n--- Solución Inicial (Greedy) ---" << endl;
             cout << "Profit: " << (long)solInicial.profit << endl;
             cout << "Factible: " << (solInicial.esFactible ? "Si" : "No") << endl;
 
-            // 2. Ejecutar SA (Medimos solo esta parte si quieres precisión algorítmica,
-            // pero para el total se suele medir todo el proceso de resolución)
+            // 2. ejecutar SA 
             cout << "\n--- Ejecutando SA ---" << endl;
             Solucion solFinal = algo.ejecutarSimulatedAnnealing(tempInicial, tempFinal, tasaEnfriamiento);
             
-            // Medir fin del tiempo
+            // medir fin del tiempo
             auto fin_total = high_resolution_clock::now();
             auto duracion = duration_cast<milliseconds>(fin_total - inicio_total);
             double tiempoSegundos = duracion.count() / 1000.0;
 
-            // 3. Reportar Solución Final y TIEMPO
+            // 3. resultados finales y tiempos
             cout << "\n--- Mejor Solución Final (SA) ---" << endl;
-            cout << "Tiempo: " << fixed << setprecision(3) << tiempoSegundos << "s" << endl; // NUEVA LÍNEA
+            cout << "Tiempo: " << fixed << setprecision(3) << tiempoSegundos << "s" << endl;
             solFinal.imprimirFormatoSalida(seed, instancia);
             cout << "Factible: " << (solFinal.esFactible ? "Si" : "No") << endl;
 
-            // Guardar CSV de convergencia
+            // guardado datos de convergencia para graficar
             string pathCSV = resultsDir + filename + ".csv";
             ofstream csvFile(pathCSV);
             csvFile << "Iteracion,Profit\n";
@@ -96,7 +95,7 @@ int main() {
             std::cout.rdbuf(coutBuf_original);
             outFile.close();
             
-            // Mostrar tiempo también en consola
+            // mostrar mensaje de completado con tiempo
             cout << " -> ¡Listo! (" << tiempoSegundos << "s)" << endl;
 
         } catch (const exception& e) {

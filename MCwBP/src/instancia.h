@@ -1,4 +1,4 @@
-#pragma once
+#pragma once  // instrucción para incluir en compilación una sola vez
 #include <iostream>
 #include <vector>
 #include <string>
