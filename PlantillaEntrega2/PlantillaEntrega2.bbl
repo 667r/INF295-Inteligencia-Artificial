@@ -1,0 +1,47 @@
+\begin{thebibliography}{1}
+
+\bibitem{Problem2016}
+G.~Paredes-Belmar, V.~Marianov, A.~Bronfman, C.~Obreque, and
+  A.~L{\"u}er-Villagra.
+\newblock A milk collection problem with blending.
+\newblock {\em Transportation Research Part E: Logistics and Transportation
+  Review}, 94:26--43, 2016.
+
+\bibitem{IteratedApproach2020}
+J.~Villagr{\'a}n, E.~Montero, and G.~Paredes-Belmar.
+\newblock An iterated local search approach to solve the milk collection
+  problem with blending.
+\newblock In {\em 2020 IEEE Congress on Evolutionary Computation (CEC)}, pages
+  1--8, 2020.
+
+\bibitem{RealisticConstraints2022}
+O.~Polat, C.~B. Kalayci, and D.~Topalo{\u{g}}lu.
+\newblock Modelling and solving the milk collection problem with realistic
+  constraints.
+\newblock {\em Computers \& Operations Research}, 142:105759, 2022.
+
+\bibitem{ComputersInAgriculture2016}
+K.~Sethanan and R.~Pitakaso.
+\newblock Differential evolution algorithms for scheduling raw milk
+  transportation.
+\newblock {\em Computers and Electronics in Agriculture}, 121:245--259, 2016.
+
+\bibitem{Caramia2010}
+M.~Caramia and F.~Guerriero.
+\newblock A milk collection problem with incompatibility constraints.
+\newblock {\em Interfaces}, 40(2):130--143, 2010.
+
+\bibitem{ParedesBelmar2017}
+G.~Paredes-Belmar, A.~L{\"u}er-Villagra, V.~Marianov, C.~E. Cort{\'e}s, and
+  A.~Bronfman.
+\newblock The milk collection problem with blending and collection points.
+\newblock {\em Computers and Electronics in Agriculture}, 134:109--123, 2017.
+
+\bibitem{Montero2019}
+E.~Montero, D.~Canales, G.~Paredes-Belmar, and R.~Soto.
+\newblock A prize collecting problem applied to a real milk collection problem
+  in chile.
+\newblock In {\em 2019 IEEE Congress on Evolutionary Computation (CEC)}, pages
+  1415--1422, 2019.
+
+\end{thebibliography}
