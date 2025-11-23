@@ -1,15 +1,19 @@
-Instancia instancias/att48.txt leída correctamente.
+Instancia: att48.txt
 Nodos: 48, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: -4432
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 958959665354382309
-78250 61097 17153
-0-21-18-27-30-36-33-12-24-15-48-6-3-42-45-39-0 21071 37500B
-0-34-4-40-10-9-31-19-28-7-37-43-46-16-13-22-25-0 18673 40000C
-0-14-47-20-8-44-38-2-23-17-41-29-26-5-35-11-32-0 21353 40000A
-Factible: Si
+--- Mejor Solución Final (SA) ---
+Tiempo: 30.387s
+Seed: 958959665354540426
+74250 50453 23797
+0-15-24-12-33-36-30-27-18-21-39-48-42-3-6-0 17020 35000B
+0-13-16-46-43-37-7-28-19-31-10-40-4-34-0 12080 32500C
+0-32-11-35-5-26-29-41-17-23-2-38-44-8-20-47-14-0 21353 40000A
+Factible: No

@@ -1,15 +1,19 @@
-Instancia instancias/a45.txt leída correctamente.
+Instancia: a45.txt
 Nodos: 45, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 26734
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 8654199447734591662
-41230 1075 40155
-0-26-23-5-17-11-14-8-29-44-41-20-38-2-32-0 371 23200A
-0-10-16-13-40-37-43-4-42-34-22-6-19-31-28-25-7-0 366 18100C
-0-24-33-21-9-18-12-35-30-27-45-36-15-39-3-0 338 18000B
+--- Mejor Solución Final (SA) ---
+Tiempo: 30.732s
+Seed: 8654199447734749231
+40310 2102 38208
+0-29-36-9-6-14-42-12-45-30-24-27-18-21-39-15-0 674 21300B
+0-31-19-33-16-3-40-43-4-25-7-22-34-10-37-13-28-0 786 18000C
+0-11-2-41-20-5-23-17-26-32-35-38-44-8-0 643 20000A
 Factible: Si

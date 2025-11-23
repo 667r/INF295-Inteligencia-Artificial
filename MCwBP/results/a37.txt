@@ -1,15 +1,19 @@
-Instancia instancias/a37.txt leída correctamente.
+Instancia: a37.txt
 Nodos: 37, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 19258
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 5509799489545915454
-25690 923 24767
-0-5-6-3-21-15-18-24-12-9-26-36-27-32-33-30-35-0 353 16200B
-0-22-34-7-13-25-10-28-4-31-19-37-16-0 343 14500C
-0-29-2-20-11-14-23-8-17-0 227 10000A
-Factible: Si
+--- Mejor Solución Final (SA) ---
+Tiempo: 26.263s
+Seed: 5509799489546072913
+24900 1363 23537
+0-8-26-32-11-20-35-17-5-14-23-2-0 444 13400A
+0-19-31-37-16-21-12-13-6-4-18-25-28-10-34-22-0 555 15000C
+0-15-3-27-24-9-36-29-33-30-0 364 10000B
+Factible: No

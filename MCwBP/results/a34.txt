@@ -1,15 +1,19 @@
-Instancia instancias/a34.txt leída correctamente.
+Instancia: a34.txt
 Nodos: 34, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 12904
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 5907004317160864599
-31290 873 30417
-0-8-2-20-26-32-29-14-11-23-17-5-0 313 15900A
-0-34-19-3-10-13-4-22-7-16-28-25-31-0 275 14200C
-0-33-18-12-24-9-30-15-6-27-21-0 285 15900B
+--- Mejor Solución Final (SA) ---
+Tiempo: 24.751s
+Seed: 5907004317161022007
+31290 871 30419
+0-31-25-28-16-7-22-4-13-10-3-19-34-0 275 14200C
+0-21-27-6-15-30-9-24-12-18-33-0 285 15900B
+0-11-14-8-2-20-26-32-29-23-17-5-0 311 15900A
 Factible: Si

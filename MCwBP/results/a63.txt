@@ -1,15 +1,19 @@
-Instancia instancias/a63.txt leída correctamente.
+Instancia: a63.txt
 Nodos: 63, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 19902
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 952957399193319925
-25300 1205 24095
-0-8-17-29-23-56-41-59-38-5-47-32-44-62-50-35-26-0 345 9150A
-0-20-21-14-61-55-30-31-46-28-25-37-49-4-43-10-2-19-58-52-33-22-54-7-53-40-11-13-16-34-0 478 20000C
-0-12-57-45-15-51-36-18-63-48-24-39-42-9-60-6-3-27-0 382 14500B
-Factible: Si
+--- Mejor Solución Final (SA) ---
+Tiempo: 41.133s
+Seed: 952957399193477820
+24025 1121 22904
+0-57-45-54-15-51-18-36-63-24-42-9-6-30-21-27-0 328 12250B
+0-20-16-17-61-55-31-3-46-28-60-25-37-49-4-43-39-32-2-19-48-40-7-52-58-33-22-34-12-0 450 20000C
+0-11-29-23-56-41-59-38-53-5-47-44-62-50-35-14-26-8-0 344 9450A
+Factible: No

@@ -1,15 +1,19 @@
-Instancia instancias/a65.txt leída correctamente.
+Instancia: a65.txt
 Nodos: 65, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 17980
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: -2901171887612469708
-29200 1161 28039
-0-18-48-15-51-42-3-39-21-33-60-57-45-9-54-6-30-24-12-63-0 374 15000B
-0-52-7-27-10-16-28-4-37-36-31-61-43-46-22-19-25-13-34-58-49-55-64-40-0 397 14500C
-0-47-65-32-35-23-44-50-5-38-17-62-59-41-11-53-26-56-20-14-2-29-8-0 390 14350A
+--- Mejor Solución Final (SA) ---
+Tiempo: 42.611s
+Seed: -2901171887612311731
+29200 1160 28040
+0-18-48-27-15-6-51-42-3-39-21-33-54-57-45-60-9-30-24-63-0 374 15000B
+0-47-65-32-35-23-44-50-5-38-17-62-59-41-11-53-20-26-56-14-2-29-8-0 390 14350A
+0-52-7-10-16-28-4-37-36-31-61-43-46-22-19-25-13-34-58-49-55-12-64-40-0 396 14500C
 Factible: Si

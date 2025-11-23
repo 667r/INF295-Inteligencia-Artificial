@@ -1,15 +1,19 @@
-Instancia instancias/a55.txt leída correctamente.
+Instancia: a55.txt
 Nodos: 55, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 17325
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 4503595346720018170
-25815 1134 24681
+--- Mejor Solución Final (SA) ---
+Tiempo: 36.613s
+Seed: 4503595346720175906
+25815 1120 24695
 0-42-30-51-24-45-36-48-39-54-6-12-3-18-21-27-15-33-9-0 341 12250B
-0-31-28-55-25-49-19-7-46-10-40-22-13-16-52-34-4-43-37-0 420 17800C
 0-5-8-32-47-35-38-11-41-17-50-44-2-53-14-29-20-23-26-0 373 11900A
-Factible: No
+0-22-13-37-43-4-34-52-16-40-10-46-7-19-49-25-55-28-31-0 406 17800C
+Factible: Si

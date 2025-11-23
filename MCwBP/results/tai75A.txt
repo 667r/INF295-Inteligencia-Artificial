@@ -1,15 +1,19 @@
-Instancia instancias/tai75A.txt leída correctamente.
+Instancia: tai75A.txt
 Nodos: 76, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 18966
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 5044254485608013141
-34634 1292 33342
-0-29-23-2-8-10-11-4-3-12-7-6-13-25-19-28-22-75-76-16-0 404 18990C
-0-66-67-52-70-55-64-61-37-47-60-34-46-31-43-49-40-58-73-0 326 14790C
-0-21-20-26-24-72-74-71-53-59-65-45-39-44-36-50-38-33-35-42-41-62-30-32-69-48-56-51-57-63-54-27-68-15-9-5-17-18-14-0 562 35000B
-Factible: No
+--- Mejor Solución Final (SA) ---
+Tiempo: 49.637s
+Seed: 5044254485608171669
+42016 1594 40421
+0-21-24-72-74-45-56-48-39-36-33-35-42-30-69-60-51-57-63-54-27-66-15-9-11-3-12-6-18-14-0 523 15015B
+0-29-23-17-5-8-2-68-62-32-41-38-50-44-47-65-59-53-71-26-20-0 433 21965A
+0-67-52-70-55-61-34-46-31-43-49-40-58-37-64-73-76-75-16-22-28-19-25-13-7-4-10-0 638 31800C
+Factible: Si

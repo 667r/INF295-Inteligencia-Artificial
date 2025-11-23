@@ -1,15 +1,19 @@
-Instancia instancias/eil51.txt leída correctamente.
+Instancia: eil51.txt
 Nodos: 51, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 32423
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 4475888030004485018
-48990 676 48314
-0-48-42-15-24-27-9-21-30-3-33-12-39-6-0 185 25000B
-0-50-11-35-17-2-23-29-32-8-44-26-14-41-20-5-38-47-0 247 22400A
-0-19-25-7-49-28-4-37-36-22-51-10-31-40-34-46-16-45-43-18-13-0 244 30300C
-Factible: Si
+--- Mejor Solución Final (SA) ---
+Tiempo: 34.973s
+Seed: 4475888030004643335
+48900 713 48187
+0-48-42-45-6-51-30-36-21-3-12-33-9-24-0 204 25000B
+0-19-15-25-7-28-49-27-4-37-22-39-10-31-40-34-46-16-43-13-0 267 30000C
+0-2-23-29-32-8-44-26-14-41-20-5-38-50-11-35-17-47-0 241 22400A
+Factible: No

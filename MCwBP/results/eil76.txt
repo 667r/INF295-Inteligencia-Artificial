@@ -1,15 +1,19 @@
-Instancia instancias/eil76.txt leída correctamente.
+Instancia: eil76.txt
 Nodos: 76, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 90595
+Factible: Si
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 607150949161195348
-91620 930 90690
-0-41-59-11-32-26-17-2-44-65-23-29-62-71-38-5-35-47-53-14-20-8-68-0 290 45000A
-0-69-30-6-21-72-48-75-3-63-74-42-57-24-51-56-33-45-18-27-39-66-12-60-15-54-36-9-0 315 48000B
-0-76-31-46-49-22-70-37-61-16-58-28-55-67-13-73-40-10-4-19-25-50-64-43-34-7-52-0 326 43400C
+--- Mejor Solución Final (SA) ---
+Tiempo: 50.199s
+Seed: 607150949161353700
+91620 902 90718
+0-5-35-47-53-20-14-38-71-62-29-23-65-44-2-17-41-26-32-11-59-8-68-0 277 45000A
+0-18-27-9-36-54-15-60-12-66-39-56-51-33-45-24-57-42-74-63-3-75-48-72-21-6-30-69-0 306 48000B
+0-28-46-31-49-22-70-37-61-16-58-55-67-73-40-10-13-52-4-19-25-50-64-43-34-7-76-0 319 43400C
 Factible: Si

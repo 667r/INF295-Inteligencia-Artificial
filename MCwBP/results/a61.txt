@@ -1,15 +1,19 @@
-Instancia instancias/a61.txt leída correctamente.
+Instancia: a61.txt
 Nodos: 61, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 39508
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: -4486916303281358967
-40550 898 39652
-0-23-5-27-44-33-39-11-60-38-47-9-54-21-48-36-17-59-24-8-0 328 35000B
-0-15-56-4-16-34-43-31-46-3-6-55-42-7-30-37-22-28-57-52-10-40-14-13-51-0 344 29900C
-0-18-58-53-32-12-61-29-45-2-35-49-19-26-41-50-25-20-0 227 23600C
-Factible: No
+--- Mejor Solución Final (SA) ---
+Tiempo: 40.360s
+Seed: -4486916303281201154
+61670 1030 60640
+0-56-44-5-23-14-53-32-29-2-17-35-59-26-41-47-38-11-50-20-8-0 350 30400A
+0-51-18-12-45-36-48-57-30-21-42-9-54-6-3-60-39-33-27-24-15-0 312 34600B
+0-10-52-49-19-28-22-37-7-55-46-4-25-16-31-43-34-13-58-61-40-0 368 23500C
+Factible: Si

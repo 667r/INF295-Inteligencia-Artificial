@@ -1,15 +1,19 @@
-Instancia instancias/eil30.txt leída correctamente.
+Instancia: eil30.txt
 Nodos: 30, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 4969
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: 2325309264886598230
-7705 814 6891
-0-27-28-25-7-6-4-22-9-10-18-13-16-24-19-0 301 4850C
-0-15-12-30-3-21-0 238 5500B
+--- Mejor Solución Final (SA) ---
+Tiempo: 22.572s
+Seed: 2325309264886756500
+7705 788 6917
 0-11-8-14-17-29-26-2-5-23-20-0 275 2400A
+0-21-30-6-3-15-9-24-0 239 5500B
+0-19-16-12-13-18-10-22-4-7-25-28-27-0 273 4850C
 Factible: Si

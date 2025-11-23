@@ -1,15 +1,19 @@
-Instancia instancias/eil23.txt leída correctamente.
+Instancia: eil23.txt
 Nodos: 23, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 6495
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: -5084341147829912348
-8130 923 7208
-0-21-18-15-3-12-6-9-0 283 2009B
-0-19-22-10-7-4-16-13-0 299 2080C
-0-8-5-11-14-2-17-23-20-0 341 6100A
+--- Mejor Solución Final (SA) ---
+Tiempo: 18.869s
+Seed: -5084341147829754097
+8078 899 7179
+0-20-2-14-11-5-8-0 269 5925A
+0-13-16-4-7-10-22-19-0 299 2080C
+0-21-23-18-15-17-3-12-6-9-0 330 2184B
 Factible: Si

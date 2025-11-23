@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+<rect width="100%" height="100%" fill="white" />
+<text x="300" y="25" text-anchor="middle" font-family="Arial" font-size="18">Factibilidad: Greedy vs SA</text>
+<line x1="50" y1="50" x2="50" y2="350" stroke="black" stroke-width="2"/>
+<line x1="50" y1="350" x2="550" y2="350" stroke="black" stroke-width="2"/>
+<text x="40" y="350" text-anchor="end" font-family="Arial">0%</text>
+<text x="40" y="50" text-anchor="end" font-family="Arial">100%</text>
+<rect x="150" y="334.211" width="100" height="15.7895" fill="#ff9999" stroke="black" />
+<text x="200" y="370" text-anchor="middle" font-family="Arial">Greedy</text>
+<text x="200" y="324.211" text-anchor="middle" font-family="Arial" font-weight="bold">5.3%</text>
+<rect x="350.0" y="168.4" width="100.0" height="181.6" fill="#66b3ff" stroke="black" />
+<text x="400.0" y="370.0" text-anchor="middle" font-family="Arial">SA</text>
+<text x="400.0" y="158.4" text-anchor="middle" font-family="Arial" font-weight="bold">60.5%</text>
+</svg>

@@ -1,15 +1,19 @@
-Instancia instancias/a46.txt leída correctamente.
+Instancia: a46.txt
 Nodos: 46, Camiones: 3
 
---- Ejecutando Simulated Annealing ---
-Temp. Inicial: 100000, Temp. Final: 1, Tasa: 1
+--- Solución Inicial (Greedy) ---
+Profit: 28926
+Factible: No
+
+--- Ejecutando SA ---
 Iniciando Simulated Annealing...
 Simulated Annealing terminado.
 
---- Mejor Solución Encontrada (SA) ---
-Seed: -1535744476630601746
-41010 1060 39950
-0-18-30-42-21-2-20-9-12-36-45-3-33-6-39-27-15-24-0 383 22300B
-0-46-7-31-37-4-40-13-19-25-43-34-16-28-22-10-0 366 18000C
-0-44-14-5-38-23-8-11-26-17-41-35-32-29-0 311 20000A
+--- Mejor Solución Final (SA) ---
+Tiempo: 31.254s
+Seed: -1535744476630444146
+40980 1028 39952
+0-18-42-30-32-21-20-9-12-36-45-3-33-6-39-27-15-24-0 353 22400B
+0-10-22-28-16-34-43-25-19-13-40-4-37-31-7-46-0 366 18000C
+0-44-14-5-38-23-8-11-26-17-2-41-35-29-0 309 19900A
 Factible: Si

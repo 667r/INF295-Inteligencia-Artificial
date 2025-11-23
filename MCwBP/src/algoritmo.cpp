@@ -16,40 +16,39 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
     vector<vector<int>> rutas(inst.numCamiones);
     vector<int> cargasActuales(inst.numCamiones, 0);
     
-    // 1. Copiar granjas
+    // copiar granjas para manipular
     vector<Nodo> granjasCandidatas = inst.granjas;
     vector<int> granjasNoVisitadasIDs;
     
-    // 2. ORDENAMIENTO HEURÍSTICO (La clave para la robustez)
-    // Ordenamos las granjas para procesar las más "críticas" primero.
+    // ordenar granjas por prioridad 
     sort(granjasCandidatas.begin(), granjasCandidatas.end(), [](const Nodo& a, const Nodo& b) {
-        // Criterio 1: Calidad de leche (Ascendente: 'A' < 'B' < 'C')
-        // Priorizamos cargar la leche de mejor calidad antes para asegurar cuotas 
+        // criterio 1: calidad de leche (ascendente: 'A' < 'B' < 'C')
+        // priorizamos cargar la leche de mejor calidad antes para asegurar cuotas 
         // y evitar que la leche mala ocupe espacio prematuramente.
         if (a.tipoLeche != b.tipoLeche) {
             return a.tipoLeche < b.tipoLeche; 
         }
         
-        // Criterio 2: Cantidad de leche (Descendente)
+        // criterio 2: cantidad de leche (descendente)
         // Es más difícil ubicar granjas grandes al final. Las metemos primero.
         return a.cantidadLeche > b.cantidadLeche;
     });
 
-    // 3. Inserción Greedy (Cheapest Insertion)
+    // 3. inserción greedy (Cheapest Insertion)
     for (const auto& granja : granjasCandidatas) {
         double mejorCostoInsercion = numeric_limits<double>::max();
         int mejorCamion = -1;
         int mejorPosicion = -1;
 
-        // Intentar insertar la granja en el camión que minimice el incremento de distancia
+        // intentar insertar la granja en el camión que minimice el incremento de distancia
         for (int k = 0; k < inst.numCamiones; ++k) {
             
-            // Restricción Dura: Capacidad del camión
+            // restricción dura: capacidad del camión
             if (cargasActuales[k] + granja.cantidadLeche > inst.capacidadesCamiones[k]) {
                 continue; 
             }
 
-            // Probar todas las posiciones posibles en la ruta k
+            // probar todas las posiciones posibles en la ruta k
             for (int pos = 0; pos <= rutas[k].size(); ++pos) {
                 int nodoPrev = (pos == 0) ? inst.planta.id : rutas[k][pos - 1];
                 int nodoSig = (pos == rutas[k].size()) ? inst.planta.id : rutas[k][pos];
@@ -58,7 +57,7 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
                                       inst.getDistancia(granja.id, nodoSig) -
                                       inst.getDistancia(nodoPrev, nodoSig);
 
-                // Si encontramos una posición válida con menor costo, la guardamos
+                // si encontramos una posición válida con menor costo, la guardamos
                 if (costoInsercion < mejorCostoInsercion) {
                     mejorCostoInsercion = costoInsercion;
                     mejorCamion = k;
@@ -67,12 +66,12 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
             }
         }
 
-        // 4. Asignación
+        // 4. asignación
         if (mejorCamion != -1) {
             rutas[mejorCamion].insert(rutas[mejorCamion].begin() + mejorPosicion, granja.id);
             cargasActuales[mejorCamion] += granja.cantidadLeche;
         } else {
-            // Si llegamos aquí, es porque la instancia está muy ajustada de capacidad
+            // si llegamos aquí, es porque la instancia está muy ajustada de capacidad
             // y la heurística no logró encajarla.
             granjasNoVisitadasIDs.push_back(granja.id);
         }        
@@ -87,6 +86,8 @@ Solucion Algoritmo::generarSolucionInicialGreedy() {
 Solucion Algoritmo::ejecutarSimulatedAnnealing(double tempInicial, double tempFinal, double tasaEnfriamiento) {
     
     cout << "Iniciando Simulated Annealing..." << endl;
+
+    historialConvergencia.clear();
     
     Solucion solActual = generarSolucionInicialGreedy();
     Solucion mejorSolucion = solActual;
@@ -94,6 +95,8 @@ Solucion Algoritmo::ejecutarSimulatedAnnealing(double tempInicial, double tempFi
     double temperatura = tempInicial;
     double energiaActual = calcularEnergia(solActual);
     double mejorEnergia = energiaActual;
+
+    int iteracion = 0;
 
     while (temperatura > tempFinal) {
         // 1. generar un vecino
@@ -112,14 +115,14 @@ Solucion Algoritmo::ejecutarSimulatedAnnealing(double tempInicial, double tempFi
             mejorEnergia = energiaActual;
         }
 
-        if (fmod(temperatura, 100) == 0) {
-            // Guardamos el Profit de la MEJOR solución hasta el momento, o la actual.
-            // Generalmente se grafica la "Mejor encontrada" para ver la meseta.
-            historialConvergencia.push_back({temperatura, mejorSolucion.profit});
-        }        
+        if (iteracion % 100 == 0) {
+            // guardamos la iteración actual y el profit de la solución encontrada hasta el momento
+            historialConvergencia.push_back({iteracion, mejorSolucion.profit});
+        }      
 
         // 4. enfriar (se enfriará cada iteración)
         temperatura *= tasaEnfriamiento;
+        iteracion++;                                                                                                                                                                                                                                                                                                                                                                                    
     }
 
     cout << "Simulated Annealing terminado." << endl;
@@ -131,20 +134,20 @@ Solucion Algoritmo::generarVecino(const Solucion& solActual) {
     vector<vector<int>> nuevasRutas = solActual.rutas;
     vector<int> nuevasNoVisitadas = solActual.granjasNoVisitadas;
 
-    // Si no hay rutas y tampoco no visitados, no se puede hacer nada
+    // si no hay rutas y tampoco no visitados, no se puede hacer nada
     if (nuevasRutas.empty() && nuevasNoVisitadas.empty()) return solActual;
 
-    // Elegir entre Intra-Ruta (0) o Inter-Ruta (1)
+    // elegir entre 2opt o shift generalizado
     int tipoMovimiento = rand() % 2;
 
-    // --- MOVIMIENTO 1: INTRA-RUTA (2-OPT) ---
-    // Mejora la calidad de una ruta individual invirtiendo un segmento.
+    // 2opt intra-ruta
+    // mejora la calidad de una ruta individual invirtiendo un segmento.
     if (tipoMovimiento == 0) {
-        // Elegir una ruta aleatoria que tenga al menos 2 nodos
+        // elegir una ruta aleatoria que tenga al menos 2 nodos
         int k = rand() % nuevasRutas.size();
         size_t intentos = 0;
         while (nuevasRutas[k].size() < 2 && intentos < 10) {
-            k = rand() % nuevasRutas.size();
+            k = rand() % nuevasRutas.size();                                                                                                                                                                                                                                                                                                                                                          
             intentos++;
         }
         
@@ -154,51 +157,51 @@ Solucion Algoritmo::generarVecino(const Solucion& solActual) {
             std::reverse(nuevasRutas[k].begin() + i, nuevasRutas[k].begin() + j + 1);
         }
     } 
-    // --- MOVIMIENTO 2: INTER-RUTA (SHIFT GENERALIZADO: Move/Add/Drop) ---
-    // Mueve una granja de [Ruta X o NoVisitados] a [Ruta Y o NoVisitados]
+    // shift generalizado 
+    // mueve una granja de [ruta X o NoVisitados] a [ruta Y o NoVisitados]
     else {
-        // 1. Seleccionar ORIGEN (¿De dónde sacamos la granja?)
+        // 1. seleccionar ORIGEN (de dónde sacamos la granja?)
         // -1 representa la lista "No Visitados", 0 a N-1 son las rutas.
         int origenIdx = -1;
         
-        // Probabilidad de sacar de "No Visitados" vs "Rutas"
+        // probabilidad de sacar de "No Visitados" vs "Rutas"
         bool sacarDeNoVisitados = (!nuevasNoVisitadas.empty()) && (rand() % 2 == 0);
         
         if (!sacarDeNoVisitados) {
-            // Sacar de una ruta existente
+            // sacar de una ruta existente
             origenIdx = rand() % nuevasRutas.size();
-            // Buscar una ruta que no esté vacía
+            // buscar una ruta que no esté vacía
             size_t intentos = 0;
             while (nuevasRutas[origenIdx].empty() && intentos < 10) {
                 origenIdx = rand() % nuevasRutas.size();
                 intentos++;
             }
-            if (nuevasRutas[origenIdx].empty()) return solActual; // No hay nada que mover
+            if (nuevasRutas[origenIdx].empty()) return solActual; // no hay nada que mover
         }
 
-        // 2. Seleccionar DESTINO (¿A dónde va la granja?)
+        // 2. elegir destino (a dónde va la granja?)
         int destinoIdx = -1;
         
-        // No permitimos mover de "No Visitados" a "No Visitados"
+        // no permitimos mover de "No Visitados" a "No Visitados"
         if (origenIdx == -1) {
-            destinoIdx = rand() % nuevasRutas.size(); // Debe ir a una ruta
+            destinoIdx = rand() % nuevasRutas.size(); // debe ir a una ruta
         } else {
-            // Puede ir a otra ruta o a "No Visitados"
-            // Damos alta probabilidad a ir a otra ruta para fomentar el intercambio
+            // puede ir a otra ruta o a "No Visitados"
+            // damos alta probabilidad a ir a otra ruta para fomentar el intercambio
             if (rand() % 10 < 8) { 
                 destinoIdx = rand() % nuevasRutas.size();
             } else {
-                destinoIdx = -1; // Drop
+                destinoIdx = -1; // drop
             }
         }
 
-        // Evitar movimiento nulo (mismo origen y destino)
+        // evitar movimiento nulo (mismo origen y destino)
         if (origenIdx == destinoIdx) return solActual;
 
-        // 3. Ejecutar el movimiento
+        // 3. ejecutar el movimiento
         int granjaId;
         
-        // A. Extraer del origen
+        // A. extraer del origen
         if (origenIdx == -1) {
             int pos = rand() % nuevasNoVisitadas.size();
             granjaId = nuevasNoVisitadas[pos];
@@ -209,7 +212,7 @@ Solucion Algoritmo::generarVecino(const Solucion& solActual) {
             nuevasRutas[origenIdx].erase(nuevasRutas[origenIdx].begin() + pos);
         }
 
-        // B. Insertar en el destino
+        // B. insertar en el destino
         if (destinoIdx == -1) {
             nuevasNoVisitadas.push_back(granjaId);
         } else {
@@ -245,7 +248,7 @@ double Algoritmo::calcularEnergia(const Solucion& sol) {
             carga += inst.getNodo(granjaId).cantidadLeche;
         }
         if (carga > inst.capacidadesCamiones[k]) {
-            penalizacion += (carga - inst.capacidadesCamiones[k]) * 15.0; // penalización alta
+            penalizacion += (carga - inst.capacidadesCamiones[k]) * 15.0; // penalización baja por camiones
         }
     }
 
@@ -266,13 +269,8 @@ double Algoritmo::calcularEnergia(const Solucion& sol) {
 
     for (int i = 0; i < inst.numTiposLeche; ++i) {
         if (lecheFinalPorTipo[i] < inst.cuotasLeche[i]) {
-            penalizacion += (inst.cuotasLeche[i] - lecheFinalPorTipo[i]) * 500.0; // penalización media
+            penalizacion += (inst.cuotasLeche[i] - lecheFinalPorTipo[i]) * 500.0; // penalización alta para las cuotas
         }
-    }
-
-    for (int granjaId : sol.granjasNoVisitadas) {
-        // penalización muy alta, proporcional a la cantidad de leche no recogida
-        penalizacion += inst.getNodo(granjaId).cantidadLeche * 50.0; 
     }
     
     return profit - penalizacion;
